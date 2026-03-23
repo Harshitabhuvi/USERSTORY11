@@ -9,10 +9,18 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 log_path = os.path.join(BASE, "logs")
 os.makedirs(log_path, exist_ok=True)
 
-# Setup logging with correct path
+log_file = os.path.join(log_path, "fraud_engine.log")
+
+# 🔥 CLEAR OLD HANDLERS
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
+
+# 🔥 OVERWRITE LOG FILE EACH RUN (mode="w")
 logging.basicConfig(
-    filename=os.path.join(log_path, "fraud_engine.log"),
-    level=logging.INFO
+    filename=log_file,
+    filemode="w",   # ✅ THIS FIXES YOUR ISSUE
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
 def validate_transaction(txn, merchants):

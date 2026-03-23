@@ -6,7 +6,7 @@ This project is a Python-based fraud detection and settlement engine designed fo
 
 Additionally, an interactive dashboard is built using Streamlit to visualize fraud insights.
 
----
+-----
 
 ## ⚙️ Features
 
